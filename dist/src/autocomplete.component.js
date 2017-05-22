@@ -33,6 +33,7 @@ let AutoCompleteComponent = class AutoCompleteComponent {
         this.suggestions = [];
         this.showList = false;
         this.itemSelected = new core_1.EventEmitter();
+        this.ionAutoClear = new core_1.EventEmitter();
         this.ionAutoInput = new core_1.EventEmitter();
         this.options = {};
         // set default options
@@ -61,6 +62,9 @@ let AutoCompleteComponent = class AutoCompleteComponent {
         }
         // emit event
         this.ionAutoInput.emit(this.keyword);
+    }
+    onClear() {
+      this.ionAutoClear.emit("cleared");
     }
     /**
      * show item list
@@ -132,11 +136,16 @@ __decorate([
 __decorate([
     core_1.Output(),
     __metadata("design:type", core_1.EventEmitter)
+], AutoCompleteComponent.prototype, "ionAutoClear", void 0);
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
 ], AutoCompleteComponent.prototype, "ionAutoInput", void 0);
 AutoCompleteComponent = __decorate([
     core_1.Component({
         template: `
       <ion-searchbar (ionInput)="getItems($event)"
+                     (ionClear)="onClear()"
                      [(ngModel)]="keyword"
                      [cancelButtonText]="options.cancelButtonText == null ? defaultOpts.cancelButtonText : options.cancelButtonText"
                      [showCancelButton]="options.showCancelButton == null ? defaultOpts.showCancelButton : options.showCancelButton"

@@ -5,6 +5,7 @@ export declare class AutoCompleteComponent {
     options: any;
     keyword: string;
     itemSelected: EventEmitter<any>;
+    ionAutoClear: EventEmitter<string>;
     ionAutoInput: EventEmitter<string>;
     private suggestions;
     private showList;
@@ -20,6 +21,7 @@ export declare class AutoCompleteComponent {
     /**
      * show item list
      */
+    onClear(): void;
     private showItemList();
     /**
      * hide item list
